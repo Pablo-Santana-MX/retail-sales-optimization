@@ -40,9 +40,6 @@ capacidad fisica de almacen.
 --------------------------------------------------------------------------------
 2. ARQUITECTURA DEL SISTEMA / SYSTEM PIPELINE
 --------------------------------------------------------------------------------
-
-## 🏗️ 2. Arquitectura del Sistema / System Pipeline
-
 | Directorio / Recurso | Módulos & Artefactos Clave | Propósito Operativo |
 | :--- | :--- | :--- |
 | **`notebooks/`** | `01_EDA_and_Engineering.ipynb`<br>`02_Predictive_Models.ipynb`<br>`03_Prescriptive_Analytics.ipynb` | Pipeline analítico secuencial: exploración, pronósticos supervisados y optimización prescriptiva. |
