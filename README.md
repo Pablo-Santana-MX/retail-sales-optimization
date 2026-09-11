@@ -1,4 +1,3 @@
-================================================================================
 RETAIL SALES OPTIMIZATION & INVENTORY DECISION ENGINE
 Motor de Optimizacion de Ventas Minoristas y Asignacion Prescriptiva de Inventarios
 ================================================================================
