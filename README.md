@@ -41,19 +41,14 @@ capacidad fisica de almacen.
 2. ARQUITECTURA DEL SISTEMA / SYSTEM PIPELINE
 --------------------------------------------------------------------------------
 
-retail-sales-optimization/
-|-- data/
-|   |-- raw/                      # Ingesta cruda: ventas, caracteristicas y tiendas (2023-2025)
-|   `-- processed/                # Datasets curados e imputados (retail_data_processed.csv)
-|-- notebooks/
-|   |-- 01_EDA_and_Engineering.ipynb    # Fase 1: Limpieza, imputacion y analisis estacional
-|   |-- 02_Predictive_Models.ipynb      # Fase 2: Modelado predictivo (XGBoost) y XAI (SHAP)
-|   `-- 03_Prescriptive_Analytics.ipynb # Fase 3: Programacion lineal entera (PuLP)
-|-- reports/
-|   `-- figures/                  # Diagnosticos visuales exportados en alta resolucion
-|-- requirements.txt              # Entorno reproducible de dependencias
-`-- README.txt                    # Documentacion ejecutiva del repositorio
+## 🏗️ 2. Arquitectura del Sistema / System Pipeline
 
+| Directorio / Recurso | Módulos & Artefactos Clave | Propósito Operativo |
+| :--- | :--- | :--- |
+| **`notebooks/`** | `01_EDA_and_Engineering.ipynb`<br>`02_Predictive_Models.ipynb`<br>`03_Prescriptive_Analytics.ipynb` | Pipeline analítico secuencial: exploración, pronósticos supervisados y optimización prescriptiva. |
+| **`data/`** | `raw/`, `processed/` | Ingesta transaccional original y almacenamiento curado (`retail_data_processed.csv`). |
+| **`reports/figures/`** | Visualizaciones (`.png`), `banner_showcase.gif` | Gráficos diagnósticos estacionales, matrices SHAP y reporte visual para portafolio. |
+| **Entorno & Setup** | `requirements.txt`, `make_banner.py` | Configuración determinista de librerías y utilidades de automatización. |
 
 --------------------------------------------------------------------------------
 3. FASES DEL PROYECTO / PROJECT BREAKDOWN
