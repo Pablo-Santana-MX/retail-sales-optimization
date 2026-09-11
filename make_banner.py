@@ -1,0 +1,131 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "3eeab81d-fecd-4061-bc9a-a25a02eaaef3",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "✅ [SUCCESS] Executive GIF generated with 4 phases at: reports/figures/banner_showcase.gif\n"
+     ]
+    }
+   ],
+   "source": [
+    "# ==============================================================================\n",
+    "# BANNER GENERATOR | 4-STAGE EXECUTIVE REPOSITORY GIF\n",
+    "# ==============================================================================\n",
+    "import os\n",
+    "from PIL import Image, ImageDraw\n",
+    "\n",
+    "FIG_DIR = \"reports/figures\"\n",
+    "OUTPUT_PATH = \"reports/figures/banner_showcase.gif\"\n",
+    "\n",
+    "# Selección curada en orden cronológico del pipeline\n",
+    "curated_slides = [\n",
+    "    {\n",
+    "        \"file\": \"01_seasonal_demand_trend.png\",\n",
+    "        \"phase\": \"Phase 01 | Exploratory Data Analysis\",\n",
+    "        \"desc\": \"Longitudinal Revenue Dynamics & Holiday Shocks (2023-2025)\"\n",
+    "    },\n",
+    "    {\n",
+    "        \"file\": \"02_actual_vs_predicted.png\",\n",
+    "        \"phase\": \"Phase 02 | Machine Learning Forecasting\",\n",
+    "        \"desc\": \"XGBoost Regression: Actual vs. Forecasted Weekly Demand\"\n",
+    "    },\n",
+    "    {\n",
+    "        \"file\": \"02_shap_feature_importance.png\",\n",
+    "        \"phase\": \"Phase 02 | Explainable AI (XAI)\",\n",
+    "        \"desc\": \"Game-Theoretic SHAP Value Attribution & Feature Impact\"\n",
+    "    },\n",
+    "    {\n",
+    "        \"file\": \"03_prescriptive_inventory_allocation.png\",\n",
+    "        \"phase\": \"Phase 03 | Operations Research & ILP\",\n",
+    "        \"desc\": \"PuLP Integer Optimization: Budget & Footprint Saturation\"\n",
+    "    }\n",
+    "]\n",
+    "\n",
+    "BANNER_WIDTH = 1200\n",
+    "BANNER_HEIGHT = 650\n",
+    "HEADER_HEIGHT = 75\n",
+    "\n",
+    "COLOR_BG = (255, 255, 255)\n",
+    "COLOR_BAR = (127, 38, 217)  # #7F26D9\n",
+    "\n",
+    "frames = []\n",
+    "\n",
+    "for idx, slide in enumerate(curated_slides):\n",
+    "    img_path = os.path.join(FIG_DIR, slide[\"file\"])\n",
+    "    if not os.path.exists(img_path):\n",
+    "        print(f\"⚠️ [WARNING] Not found: {img_path}. Skipping.\")\n",
+    "        continue\n",
+    "\n",
+    "    # Canvas principal\n",
+    "    canvas = Image.new(\"RGB\", (BANNER_WIDTH, BANNER_HEIGHT), COLOR_BG)\n",
+    "    draw = ImageDraw.Draw(canvas)\n",
+    "\n",
+    "    # Cabecera corporativa\n",
+    "    draw.rectangle([(0, 0), (BANNER_WIDTH, HEADER_HEIGHT)], fill=COLOR_BAR)\n",
+    "    draw.text((30, 16), f\"RETAIL DECISION ENGINE | {slide['phase'].upper()}\", fill=(255, 255, 255))\n",
+    "    draw.text((30, 42), slide[\"desc\"], fill=(225, 205, 255))\n",
+    "\n",
+    "    # Procesar imagen analítica\n",
+    "    img = Image.open(img_path).convert(\"RGB\")\n",
+    "    available_w = BANNER_WIDTH - 60\n",
+    "    available_h = BANNER_HEIGHT - HEADER_HEIGHT - 35\n",
+    "    img.thumbnail((available_w, available_h), Image.Resampling.LANCZOS)\n",
+    "\n",
+    "    # Centrar en el área de contenido\n",
+    "    pos_x = (BANNER_WIDTH - img.width) // 2\n",
+    "    pos_y = HEADER_HEIGHT + (available_h - img.height) // 2 + 10\n",
+    "    canvas.paste(img, (pos_x, pos_y))\n",
+    "\n",
+    "    frames.append(canvas)\n",
+    "\n",
+    "# Guardar GIF optimizado (2.5 segundos por diapositiva)\n",
+    "frames[0].save(\n",
+    "    OUTPUT_PATH,\n",
+    "    save_all=True,\n",
+    "    append_images=frames[1:],\n",
+    "    duration=2500,\n",
+    "    loop=0,\n",
+    "    optimize=True\n",
+    ")\n",
+    "\n",
+    "print(f\"✅ [SUCCESS] Executive GIF generated with {len(frames)} phases at: {OUTPUT_PATH}\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "4691faa8-e70a-48c5-a396-e88b244d055d",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.12.4"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}

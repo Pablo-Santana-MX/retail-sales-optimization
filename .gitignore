@@ -1,0 +1,14 @@
+# Datasets y almacenamiento masivo
+data/raw/*
+data/processed/*
+*.csv
+*.bak
+
+# Cache de Python y Jupyter
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+
+# Redundancias
+README.txt
